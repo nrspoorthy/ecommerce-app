@@ -1,0 +1,75 @@
+/* Wrapper centers everything with background image */
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: url("https://i.pinimg.com/1200x/2f/49/92/2f4992a8695b053dfc022b7adb9ede44.jpg")
+    no-repeat center center/cover;
+  font-family: Arial, sans-serif;
+}
+
+/* Box with glass effect */
+.register-box {
+  background: rgba(26, 26, 26, 0.85); /* semi-transparent black */
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 350px;
+  text-align: center;
+  backdrop-filter: blur(12px); /* glassmorphism */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Title */
+.register-title {
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* Form inputs */
+.register-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: rgba(42, 42, 42, 0.9);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.register-input:focus {
+  border: 1px solid #4cafef;
+  background: rgba(34, 34, 34, 1);
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, gray);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: linear-gradient(90deg, #1e90ff, #4cafef);
+  transform: scale(1.05);
+}
+
+/* Error message */
+.register-error {
+  color: #ff4d4d;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}

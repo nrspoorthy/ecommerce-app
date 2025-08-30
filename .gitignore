@@ -1,0 +1,12 @@
+# Ignore node modules
+node_modules/
+
+# Ignore build folders
+dist/
+build/
+
+# Ignore environment variables
+.env
+
+# Ignore log files
+*.log
