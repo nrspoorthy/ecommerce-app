@@ -8,7 +8,7 @@ const getProducts = async (req, res) => {
     if (search) {
   query = {
     $or: [
-      { title: { $regex: search, $options: "i" } },      
+          { title: { $regex: search, $options: "i" } },      
           { description: { $regex: search, $options: "i" } },  
           { brand: { $regex: search, $options: "i" } },        
           { category: { $regex: search, $options: "i" } },  
@@ -58,4 +58,58 @@ const getProductsByCategory  = async(req,res) => {
     res.status(500).json({message:"Server Error"})
   }
 }
-module.exports = { getProducts, getProductById, getProductsByCategory }
+
+const addProduct = async (req, res) => {
+  try {
+    const { title, description, price, brand, category, stock, image } = req.body;
+
+    if (!title || !price) {
+      return res.status(400).json({ message: "Title and Price are required" });
+    }
+
+    const product = new Product({
+      title,
+      description,
+      price,
+      brand,
+      category,
+      stock,
+      image
+    });
+
+    const createdProduct = await product.save();
+    res.status(201).json(createdProduct);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteAllProducts = async (req, res) => {
+  try {
+    await Product.deleteMany({});   
+    res.json({ message: "All products deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
+
+const addProductsBulk = async (req, res) => {
+    try {
+        const products = req.body; 
+
+        if (!Array.isArray(products) || products.length === 0) {
+            return res.status(400).json({ message: "Provide an array of products" });
+        }
+
+        const savedProducts = await Product.insertMany(products);
+        res.status(201).json(savedProducts);
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error: error.message });
+    }
+};
+
+
+
+module.exports = { getProducts, getProductById, getProductsByCategory, addProduct, deleteAllProducts, addProductsBulk }

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";  
 
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState("");
-  const [openDropdown, setOpenDropdown] = useState(false); 
+  const [openDropdown, setOpenDropdown] = useState(false);
   const navigate = useNavigate();
 
-   const categories = [
+  const { cartItems } = useCart(); 
+
+  const categories = [
     { slug: "all", name: "All" },
     { slug: "beauty", name: "Beauty" },
     { slug: "fragrances", name: "Fragrances" },
@@ -20,11 +23,10 @@ export default function Navbar() {
     { slug: "mens-shoes", name: "Mens Shoes" },
     { slug: "mens-watches", name: "Mens Watches" },
     { slug: "mobile-accessories", name: "Mobile Accessories" },
-
   ];
 
-  const handleCategoryClick = (category) => {  
-    setOpenDropdown(false); 
+  const handleCategoryClick = (category) => {
+    setOpenDropdown(false);
     if (category.slug === "all") {
       navigate("/products");
     } else {
@@ -32,22 +34,26 @@ export default function Navbar() {
     }
   };
 
-  
-    const handleLogout = () => {
-      navigate("/login")
-    }
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   const handleSearchInput = (e) => {
     if (e.key === "Enter" && searchInput.trim() !== "") {
       e.preventDefault();
-       navigate(`/products?search=${encodeURIComponent(searchInput)}`);
+      navigate(`/products?search=${encodeURIComponent(searchInput)}`);
       setSearchInput("");
     }
   };
 
+  
+  const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <nav className="navbar">
-      <div className="logo">MyShop</div>
+      <div className="logo" onClick={() => navigate("/products")}>
+        MyShop
+      </div>
 
       <div className="navbar-right">
         <input
@@ -59,13 +65,12 @@ export default function Navbar() {
           value={searchInput}
         />
 
-        
         <div className="dropdown">
-          <button 
-            className="nav-btn" 
+          <button
+            className="nav-btn"
             onClick={() => setOpenDropdown(!openDropdown)}
           >
-            Categories 
+            Categories
           </button>
           {openDropdown && (
             <div className="dropdown-menu">
@@ -82,8 +87,14 @@ export default function Navbar() {
           )}
         </div>
 
-        <button className="nav-btn" onClick={handleLogout}>Logout</button>
-        <button className="nav-btn">Cart </button>
+        <button className="nav-btn" onClick={handleLogout}>
+          Logout
+        </button>
+
+       
+        <button className="nav-btn" onClick={() => navigate("/cart")}>
+          Cart ({cartCount})
+        </button>
       </div>
     </nav>
   );

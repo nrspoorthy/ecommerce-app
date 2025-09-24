@@ -1,0 +1,171 @@
+.checkout-container {
+  padding: 20px;
+  margin-top: 7%;
+}
+
+.checkout-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 40px;
+  color: #777;
+}
+
+.checkout-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.checkout-items {
+  flex: 2;
+}
+
+.checkout-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 75vw;
+}
+
+.checkout-card:hover {
+  transform: translateY(-2px);
+}
+
+.checkout-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.checkout-details {
+  flex: 1;
+}
+
+.checkout-item-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.checkout-item-price {
+  font-size: 14px;
+  color: #555;
+}
+
+.checkout-item-total {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.remove-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.remove-btn:hover {
+  background: #d32f2f;
+}
+
+.checkout-summary {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.checkout-summary h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.checkout-total {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.proceed-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.proceed-btn:hover {
+  background: #0d79d0;
+}
+
+/* ✅ Success Overlay */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.success-card {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  animation: popUp 0.3s ease-in-out;
+  max-width: 350px;
+  width: 90%;
+}
+
+.success-card h2 {
+  color: #28a745;
+  margin-bottom: 10px;
+}
+
+.success-card p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Pop-up animation */
+@keyframes popUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
